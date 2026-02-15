@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DOCS_DIR = BASE_DIR / "data" / "docs"
 VECTOR_STORE_DIR = BASE_DIR / "data" / "vector_store"
 
-GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY", "[AIzaSyAiSmAAYdSuroE2pOIy5JJwBY8EI6AM6CQ]")
+GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 EMBEDDING_MODEL = "models/text-embedding-004"
 LLM_MODEL = "gemini-2.5-flash"
 

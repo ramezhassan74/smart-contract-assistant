@@ -2,6 +2,15 @@ from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from google import genai
 from app.config import GOOGLE_API_KEY
 
+# Possible embedding model names to try (in order of preference)
+EMBEDDING_MODELS = [
+    "models/gemini-embedding-001",
+    "models/text-embedding-004",
+    "models/embedding-001",
+    "text-embedding-004",
+    "embedding-001",
+]
+
 
 def _find_embedding_model() -> str:
     """Auto-detect an available embedding model from Google's API."""
@@ -16,8 +25,8 @@ def _find_embedding_model() -> str:
     except Exception as e:
         print(f"⚠️ Could not list models: {e}")
 
-    # Fallback
-    return "text-embedding-004"
+    # Return the most likely working model
+    return "models/gemini-embedding-001"
 
 
 def get_embeddings() -> GoogleGenerativeAIEmbeddings:
