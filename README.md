@@ -1,72 +1,62 @@
-# 📘 Project Overview
+# 📘 Smart Contract Assistant
 
-The **Smart Contract Summary & Q&A Assistant** is a specialized **RAG (Retrieval-Augmented Generation)** app to help users interact with long documents like contracts, insurance policies, and legal reports. Using **LLM pipelines**, it supports smooth document ingestion and conversational querying with built-in guardrails.
+**Smart Contract Assistant** is a **RAG (Retrieval-Augmented Generation)** application for interacting with smart contract documents. Upload Solidity files, PDFs, or text documents and ask questions — the AI retrieves relevant context and gives accurate, sourced answers.
 
 ---
 
 ## 🚀 Key Features
 
-- **Multi-Format Ingestion:** Upload PDF and DOCX files.  
-- **Intelligent RAG Pipeline:** Extracts, chunks, and embeds content for precise retrieval.  
-- **Conversational AI:** Interactive chat interface with conversation tracking.  
-- **Factuality & Safety:** Guardrails ensure grounded answers and citations.  
-- **Automated Summarization:** Optional high-level summaries for complex contracts.
+- **Multi-Format Ingestion:** Upload `.pdf`, `.txt`, `.md`, and `.sol` files
+- **RAG Pipeline:** Chunks documents, embeds them locally, and stores in a vector database
+- **Conversational AI:** Chat interface powered by Google Gemini LLM
+- **Dual Interface:** Gradio UI for users + FastAPI for programmatic access
+- **Local Embeddings:** Uses SentenceTransformers (no API key needed for embeddings)
 
 ---
 
 ## 🛠️ Technology Stack
 
-| Component        | Technology Used                   |
-|-----------------|----------------------------------|
-| Framework        | LangChain, LangServe, FastAPI    |
-| Frontend         | Gradio UI                        |
-| Vector Store     | Chroma or FAISS                  |
-| Embeddings       | SentenceTransformers or OpenAI   |
-| Parsing          | PyMuPDF, pdfplumber, python-docx |
+| Component       | Technology                          |
+|----------------|-------------------------------------|
+| Framework       | LangChain, FastAPI                  |
+| LLM             | Google Gemini (`gemini-2.5-flash`)  |
+| Frontend        | Gradio UI                           |
+| Vector Store    | FAISS                               |
+| Embeddings      | SentenceTransformers (`all-MiniLM-L6-v2`) |
+| Document Parsing| PyPDFLoader, TextLoader             |
 
----
 
-## 🏗️ Architecture & Workflow
 
-1. **Ingestion:** Upload, parse, and split files into chunks.  
-2. **Storage:** Convert chunks into embeddings and store in vector DB.  
-3. **Retrieval:** Perform semantic search to find relevant sections.  
-4. **Generation:** LLM generates answers using retrieved context with citations.
+## 🏗️ How It Works
 
----
+1. **Ingestion:** Documents are loaded, split into chunks (1000 chars, 200 overlap)
+2. **Embedding:** Chunks are embedded locally using SentenceTransformers
+3. **Storage:** Embeddings are stored in a FAISS vector store on disk
+4. **Retrieval:** User question is embedded → top 4 similar chunks retrieved
+5. **Generation:** Gemini LLM generates an answer using the retrieved context
 
-# 📘 نظرة عامة على المشروع
 
-مساعد **تلخيص العقود الذكية والأسئلة والأجوبة** هو تطبيق متخصص يعتمد على تقنية **RAG** لمساعدة المستخدمين على التعامل مع مستندات طويلة مثل العقود، بوالص التأمين، والتقارير القانونية. باستخدام **LLM pipelines**، يمكن استيعاب المستندات والدردشة معها مع ضوابط أمان مدمجة.
 
----
+## 📘 نظرة عامة
 
-## 🚀 الميزات الرئيسية
+**مساعد العقود الذكية** هو تطبيق يعتمد على تقنية **RAG** للتفاعل مع مستندات العقود الذكية. ارفع ملفات Solidity أو PDF أو نصوص واسأل أسئلة — الذكاء الاصطناعي يسترجع السياق المناسب ويعطيك إجابات دقيقة.
 
-- **دعم صيغ متعددة:** رفع ملفات PDF و DOCX.  
-- **خط معالجة ذكي (RAG):** استخراج النصوص، تقسيمها، وتحويلها إلى **Embeddings** لدقة الاسترجاع.  
-- **ذكاء اصطناعي تفاعلي:** واجهة دردشة مع تتبع حالة الحوار.  
-- **المصداقية والأمان:** ضوابط لضمان إجابات واقعية مع ذكر المصادر.  
-- **تلخيص تلقائي:** ميزة اختيارية لتوليد ملخصات للعقود المعقدة.
+### الأدوات والتقنيات
 
----
+| المكون          | التقنية المستخدمة                              |
+|----------------|-----------------------------------------------|
+| إطار العمل      | LangChain, FastAPI                            |
+| نموذج اللغة    | Google Gemini (`gemini-2.5-flash`)            |
+| واجهة المستخدم  | Gradio UI                                     |
+| مخزن المتجهات   | FAISS                                         |
+| تمثيل البيانات | SentenceTransformers (`all-MiniLM-L6-v2`)     |
+| تحليل الملفات  | PyPDFLoader, TextLoader                       |
 
-## 🛠️ الأدوات والتقنيات
+### سير العمل
 
-| المكون          | التقنية المستخدمة                |
-|----------------|---------------------------------|
-| إطار العمل      | LangChain, LangServe, FastAPI  |
-| واجهة المستخدم  | Gradio UI                       |
-| مخزن المتجهات   | Chroma أو FAISS                 |
-| تمثيل البيانات | SentenceTransformers أو OpenAI  |
-| تحليل الملفات  | PyMuPDF, pdfplumber, python-docx|
-
----
-
-## 🏗️ الهيكلية وسير العمل
-
-1. **الاستيعاب (Ingestion):** رفع الملفات، تحليلها، وتقسيمها لأجزاء صغيرة.  
-2. **التخزين (Storage):** تحويل الأجزاء إلى تمثيلات رقمية وتخزينها في قاعدة بيانات متجهة.  
-3. **الاسترجاع (Retrieval):** البحث الدلالي لإيجاد الأجزاء المتعلقة بسؤال المستخدم.  
-4. **التوليد (Generation):** نموذج اللغة ينشئ الإجابة بناءً على السياق مع توثيق المصادر.
+1. **الاستيعاب:** رفع الملفات وتقسيمها لأجزاء صغيرة
+2. **التمثيل:** تحويل الأجزاء لـ embeddings محلياً باستخدام SentenceTransformers
+3. **التخزين:** حفظ الـ embeddings في FAISS على القرص
+4. **الاسترجاع:** سؤال المستخدم يتحول لـ embedding → يتم استرجاع أقرب 4 أجزاء
+5. **التوليد:** Gemini LLM ينشئ الإجابة بناءً على السياق المسترجع
 
