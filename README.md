@@ -1,81 +1,72 @@
-# 🔗 Smart Contract Assistant
+# 📘 Project Overview
 
-AI-powered **RAG-based Q&A** system for **Solidity** and **Smart Contract** development.
-
-Built with **LangChain**, **Google Gemini**, **FAISS**, and **Gradio**.
+The **Smart Contract Summary & Q&A Assistant** is a specialized **RAG (Retrieval-Augmented Generation)** app to help users interact with long documents like contracts, insurance policies, and legal reports. Using **LLM pipelines**, it supports smooth document ingestion and conversational querying with built-in guardrails.
 
 ---
 
-## ✨ Features
+## 🚀 Key Features
 
-- 💬 **Ask Questions** — Get AI-powered answers about smart contracts
-- 📄 **Document Ingestion** — Upload PDF, TXT, MD, or Solidity files
-- 🔍 **RAG Pipeline** — Retrieval-Augmented Generation for accurate answers
-- 🌐 **Dual Interface** — Gradio UI or FastAPI REST API
+- **Multi-Format Ingestion:** Upload PDF and DOCX files.  
+- **Intelligent RAG Pipeline:** Extracts, chunks, and embeds content for precise retrieval.  
+- **Conversational AI:** Interactive chat interface with conversation tracking.  
+- **Factuality & Safety:** Guardrails ensure grounded answers and citations.  
+- **Automated Summarization:** Optional high-level summaries for complex contracts.
 
-## 📁 Project Structure
+---
 
-```
-smart contract assistant/
-├── main.py                  # Entry point
-├── requirements.txt         # Dependencies
-├── app/
-│   ├── config.py            # Configuration
-│   ├── embeddings.py        # Embedding model
-│   ├── vector_store.py      # FAISS vector store
-│   ├── ingestion.py         # Document ingestion pipeline
-│   ├── retriever.py         # Document retriever
-│   └── qa_chain.py          # QA chain (Gemini + RAG)
-├── server/
-│   └── api.py               # FastAPI server
-├── ui/
-│   └── gradio_app.py        # Gradio interface
-└── data/
-    └── docs/                # Place your documents here
-```
+## 🛠️ Technology Stack
 
-## 🚀 Quick Start
+| Component        | Technology Used                   |
+|-----------------|----------------------------------|
+| Framework        | LangChain, LangServe, FastAPI    |
+| Frontend         | Gradio UI                        |
+| Vector Store     | Chroma or FAISS                  |
+| Embeddings       | SentenceTransformers or OpenAI   |
+| Parsing          | PyMuPDF, pdfplumber, python-docx |
 
-### 1. Install Dependencies
+---
 
-```bash
-pip install -r requirements.txt
-```
+## 🏗️ Architecture & Workflow
 
-### 2. Set API Key
+1. **Ingestion:** Upload, parse, and split files into chunks.  
+2. **Storage:** Convert chunks into embeddings and store in vector DB.  
+3. **Retrieval:** Perform semantic search to find relevant sections.  
+4. **Generation:** LLM generates answers using retrieved context with citations.
 
-Create a `.env` file in the project root:
+---
 
-```env
-GOOGLE_API_KEY=your_google_api_key_here
-```
+# 📘 نظرة عامة على المشروع
 
-### 3. Add Documents
+مساعد **تلخيص العقود الذكية والأسئلة والأجوبة** هو تطبيق متخصص يعتمد على تقنية **RAG** لمساعدة المستخدمين على التعامل مع مستندات طويلة مثل العقود، بوالص التأمين، والتقارير القانونية. باستخدام **LLM pipelines**، يمكن استيعاب المستندات والدردشة معها مع ضوابط أمان مدمجة.
 
-Place your `.pdf`, `.txt`, `.md`, or `.sol` files in `data/docs/`.
+---
 
-### 4. Run
+## 🚀 الميزات الرئيسية
 
-```bash
-# Gradio UI (default)
-python main.py
+- **دعم صيغ متعددة:** رفع ملفات PDF و DOCX.  
+- **خط معالجة ذكي (RAG):** استخراج النصوص، تقسيمها، وتحويلها إلى **Embeddings** لدقة الاسترجاع.  
+- **ذكاء اصطناعي تفاعلي:** واجهة دردشة مع تتبع حالة الحوار.  
+- **المصداقية والأمان:** ضوابط لضمان إجابات واقعية مع ذكر المصادر.  
+- **تلخيص تلقائي:** ميزة اختيارية لتوليد ملخصات للعقود المعقدة.
 
-# FastAPI server
-python main.py --mode api
+---
 
-# Custom host/port
-python main.py --host 0.0.0.0 --port 8080
-```
+## 🛠️ الأدوات والتقنيات
 
-## 🔌 API Endpoints
+| المكون          | التقنية المستخدمة                |
+|----------------|---------------------------------|
+| إطار العمل      | LangChain, LangServe, FastAPI  |
+| واجهة المستخدم  | Gradio UI                       |
+| مخزن المتجهات   | Chroma أو FAISS                 |
+| تمثيل البيانات | SentenceTransformers أو OpenAI  |
+| تحليل الملفات  | PyMuPDF, pdfplumber, python-docx|
 
-| Method | Endpoint   | Description              |
-|--------|------------|--------------------------|
-| GET    | `/health`  | Health check             |
-| POST   | `/ask`     | Ask a question           |
-| POST   | `/ingest`  | Run ingestion pipeline   |
-| POST   | `/upload`  | Upload a document        |
+---
 
-## 📜 License
+## 🏗️ الهيكلية وسير العمل
 
-MIT
+1. **الاستيعاب (Ingestion):** رفع الملفات، تحليلها، وتقسيمها لأجزاء صغيرة.  
+2. **التخزين (Storage):** تحويل الأجزاء إلى تمثيلات رقمية وتخزينها في قاعدة بيانات متجهة.  
+3. **الاسترجاع (Retrieval):** البحث الدلالي لإيجاد الأجزاء المتعلقة بسؤال المستخدم.  
+4. **التوليد (Generation):** نموذج اللغة ينشئ الإجابة بناءً على السياق مع توثيق المصادر.
+

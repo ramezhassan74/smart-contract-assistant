@@ -62,10 +62,8 @@ def ask(question: str) -> dict:
     """Ask a question and return the answer with source documents."""
     chain, retriever = get_qa_chain()
 
-    # Get the answer
     answer = chain.invoke(question)
 
-    # Get source documents separately
     source_docs = retriever.invoke(question)
 
     sources = []
