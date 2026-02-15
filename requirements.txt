@@ -1,0 +1,13 @@
+langchain
+langchain-community
+langchain-core
+langchain-google-genai
+langchain-text-splitters
+python-dotenv
+faiss-cpu
+gradio
+fastapi
+uvicorn
+pypdf
+python-docx
+docx2txt
