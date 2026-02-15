@@ -11,10 +11,6 @@
 - **Conversational AI:** Chat interface powered by Google Gemini LLM
 - **Dual Interface:** Gradio UI for users + FastAPI for programmatic access
 - **Cloud Embeddings:** Uses Google Gemini Embeddings (auto-detects available model)
-- **RAG Pipeline:** Chunks documents, embeds them locally, and stores in a vector database
-- **Conversational AI:** Chat interface powered by Google Gemini LLM
-- **Dual Interface:** Gradio UI for users + FastAPI for programmatic access
-- **Local Embeddings:** Uses SentenceTransformers (no API key needed for embeddings)
 
 ---
 
@@ -35,7 +31,6 @@
 
 1. **Ingestion:** Documents are loaded, split into chunks (1000 chars, 200 overlap)
 2. **Embedding:** Chunks are embedded using Google Gemini Embeddings
-2. **Embedding:** Chunks are embedded locally using SentenceTransformers
 3. **Storage:** Embeddings are stored in a FAISS vector store on disk
 4. **Retrieval:** User question is embedded → top 4 similar chunks retrieved
 5. **Generation:** Gemini LLM generates an answer using the retrieved context
